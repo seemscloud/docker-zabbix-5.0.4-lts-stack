@@ -25,7 +25,4 @@ RUN chmod 644 /var/www/html/conf/zabbix.conf.php
 RUN sed -i "s/DB_SRV_ADDR/$DB_SRV_ADDR/g" /var/www/html/conf/zabbix.conf.php
 RUN sed -i "s/ZBX_SRV_ADDR/$ZBX_SRV_ADDR/g" /var/www/html/conf/zabbix.conf.php
 
-# RUN apt-get install -y iproute2 iputils-ping curl telnet net-tools
-# ip a
-
 CMD ["/usr/sbin/apache2ctl", "-D", "FOREGROUND"]

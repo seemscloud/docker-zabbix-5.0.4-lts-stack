@@ -69,7 +69,4 @@ RUN find /opt/zabbix/server -exec chown -R zabbix-server {} \;
 RUN find /opt/zabbix/agent -exec chmod g-rwx,o-rwx {} \;
 RUN find /opt/zabbix/agent -exec chown -R zabbix-agent {} \;
 
-# RUN apt-get install -y iproute2 iputils-ping curl telnet net-tools
-# CMD ip a
-
 CMD ["/opt/zabbix/server/sbin/zabbix_server", "-f", "-c", "/opt/zabbix/server/etc/zabbix_server.conf"]

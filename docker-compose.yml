@@ -1,33 +1,33 @@
-version: '3'
+version: '3.8'
 
 services:
-  ui:
-    container_name: ui
+  apache2:
+    container_name: apache2
     build:
-      context: ./ui
+      context: ./apache2
       args:
-        DB_SRV_ADDR: db
-        ZBX_SRV_ADDR: srv
+        DB_SRV_ADDR: postgresql
+        ZBX_SRV_ADDR: zabbix-server
     ports:
       - "8080:80"
     networks:
-      - zabbix
-  db:
-    container_name: db
+      - zabbix-stack
+  postgresql:
+    container_name: postgresql
     build: 
-      context: ./db
+      context: ./postgresql
     networks:
-      - zabbix
-  srv:
-    container_name: srv
+      - zabbix-stack
+  zabbix-server:
+    container_name: zabbix-server
     build:
-      context: ./srv
+      context: ./zabbix-server
       args:
-        DB_SRV_ADDR: db
+        DB_SRV_ADDR: postgresql
     networks:
-      - zabbix
+      - zabbix-stack
 networks:
-  zabbix:
+  zabbix-stack:
     ipam:
       config:
         - subnet: 172.20.10.0/24

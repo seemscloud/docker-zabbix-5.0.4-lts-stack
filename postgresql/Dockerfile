@@ -36,9 +36,4 @@ RUN /etc/init.d/postgresql start && \
      PGPASSWORD="zabbix-server" psql -h localhost -U "zabbix-server" "zabbix-server" < /zabbix/zabbix-5.0.0/database/postgresql/images.sql && \
      PGPASSWORD="zabbix-server" psql -h localhost -U "zabbix-server" "zabbix-server" < /zabbix/zabbix-5.0.0/database/postgresql/data.sql
 
-# RUN rm -f zabbix-5.0.0.tar.gz && rm -rf zabbix-5.0.0
-
-# RUN apt-get install -y iproute2 iputils-ping curl telnet net-tools
-# RUN ip a
-
 CMD ["/usr/lib/postgresql/10/bin/postgres", "-D", "/var/lib/postgresql/10/main", "-c", "config_file=/etc/postgresql/10/main/postgresql.conf"]
