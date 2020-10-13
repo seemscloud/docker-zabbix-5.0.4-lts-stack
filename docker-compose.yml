@@ -6,15 +6,18 @@ services:
     build:
       context: ./apache2
       args:
-        DB_SRV_ADDR: postgresql
-        ZBX_SRV_ADDR: zabbix-server
+        ZBX_DB_SERVER_ADDR: postgresql
+        ZBX_SERVER_ADDR: zabbix-server
     ports:
       - "8080:80"
     networks:
       - zabbix-stack
+    depends_on:
+      - postgresql
+      - zabbix-server
   postgresql:
     container_name: postgresql
-    build: 
+    build:
       context: ./postgresql
     networks:
       - zabbix-stack
@@ -23,9 +26,11 @@ services:
     build:
       context: ./zabbix-server
       args:
-        DB_SRV_ADDR: postgresql
+        ZBX_DB_SERVER: postgresql
     networks:
       - zabbix-stack
+    depends_on:
+      - postgresql
 networks:
   zabbix-stack:
     ipam:

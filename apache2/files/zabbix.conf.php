@@ -2,7 +2,7 @@
 // Zabbix GUI configuration file.
 
 $DB['TYPE']				= 'POSTGRESQL';
-$DB['SERVER']			= 'DB_SRV_ADDR';
+$DB['SERVER']			= 'ZBX_DB_SERVER_ADDR';
 $DB['PORT']				= '5432';
 $DB['DATABASE']			= 'zabbix-server';
 $DB['USER']				= 'zabbix-server';
@@ -24,7 +24,7 @@ $DB['CIPHER_LIST']		= '';
 // For upgraded installations, please read database upgrade notes before enabling this option.
 $DB['DOUBLE_IEEE754']	= true;
 
-$ZBX_SERVER				= 'ZBX_SRV_ADDR';
+$ZBX_SERVER				= 'ZBX_SERVER_ADDR';
 $ZBX_SERVER_PORT		= '10051';
 $ZBX_SERVER_NAME		= 'zabbix-server';
 
