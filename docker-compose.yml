@@ -71,8 +71,10 @@ services:
       - "10050:10050"
     networks:
       - zabbix-stack
+    privileged: true
     volumes:
       - zbx-agent-log:/opt/zabbix-agent/log
+      - /:/rootfs
     depends_on:
       - zabbix-server
 networks:
@@ -85,3 +87,4 @@ volumes:
   zbx-agent-log:
   zbx-server-log:
   zbx-postgres-data:
+
