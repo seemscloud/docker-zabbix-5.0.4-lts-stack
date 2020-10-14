@@ -2,8 +2,6 @@ FROM ubuntu:18.04
 
 ENV DEBIAN_FRONTEND=noninteractive
 
-WORKDIR /zabbix
-
 ARG ZBX_SERVER
 ARG ZBX_AGENT_HOSTNAME
 ARG ZBX_ACTIVE_SERVER
@@ -18,7 +16,6 @@ ARG ZBX_TIMEOUT
 ARG ZBX_ALLOW_ROOT
 ARG ZBX_UNSAFE_USER_PARAMETERS
 ARG ZBX_LOG_REMOTE_COMMANDS
-
 ARG ZBX_MAJOR_VERSION
 ARG ZBX_PATCH_VERSION
 
@@ -87,8 +84,5 @@ RUN apt-get autoremove --purge -y && \
     rm -rf /etc/ssh/ssh_host_*
 
 USER zabbix-agent
-
-RUN ls -lh
-RUN /opt/zabbix-agent/sbin/zabbix_agentd --help
 
 CMD ["/opt/zabbix-agent/sbin/zabbix_agentd", "-f", "-c", "/opt/zabbix-agent/etc/zabbix_agentd.conf"]

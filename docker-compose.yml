@@ -14,6 +14,8 @@ services:
       - "8080:80"
     networks:
       - zabbix-stack
+    volumes:
+      - zbx-server-log:/var/log/apache2
     depends_on:
       - postgresql
       - zabbix-server
@@ -26,6 +28,8 @@ services:
         ZBX_PATCH_VERSION: 5.0.4
     networks:
       - zabbix-stack
+    volumes:
+    - zbx-postgres-data:/var/lib/postgresql/10/main
   zabbix-server:
     container_name: zabbix-server
     build:
@@ -38,6 +42,8 @@ services:
       - "10051:10051"
     networks:
       - zabbix-stack
+    volumes:
+      - zbx-server-log:/opt/zabbix-agent/log
     depends_on:
       - postgresql
   zabbix-agent:
@@ -61,10 +67,12 @@ services:
         ZBX_LOG_REMOTE_COMMANDS: 0
         ZBX_MAJOR_VERSION: 5.0
         ZBX_PATCH_VERSION: 5.0.4
-    networks:
-      - zabbix-stack
     ports:
       - "10050:10050"
+    networks:
+      - zabbix-stack
+    volumes:
+      - zbx-agent-log:/opt/zabbix-agent/log
     depends_on:
       - zabbix-server
 networks:
@@ -72,3 +80,8 @@ networks:
     ipam:
       config:
         - subnet: 172.20.10.0/24
+
+volumes:
+  zbx-agent-log:
+  zbx-server-log:
+  zbx-postgres-data:

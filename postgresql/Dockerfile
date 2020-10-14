@@ -5,8 +5,6 @@ ENV DEBIAN_FRONTEND=noninteractive
 ARG ZBX_MAJOR_VERSION
 ARG ZBX_PATCH_VERSION
 
-WORKDIR /zabbix
-
 RUN apt-get update
 RUN apt-get install -y postgresql wget
 
