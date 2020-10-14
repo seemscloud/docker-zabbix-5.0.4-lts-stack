@@ -30,9 +30,9 @@ RUN /etc/init.d/postgresql start && \
     psql -d "zabbix-server" -c "CREATE SCHEMA \"zabbix-server\";" && \
     psql -d "zabbix-server" -c "ALTER SCHEMA \"zabbix-server\" OWNER TO \"zabbix-server\";" && \
     psql -d "zabbix-server" -c "GRANT ALL PRIVILEGES ON SCHEMA \"zabbix-server\" TO \"zabbix-server\";" && \
-    PGPASSWORD="zabbix-server" psql -h localhost -U "zabbix-server" "zabbix-server" < /zabbix/zabbix-$ZBX_PATCH_VERSION/database/postgresql/schema.sql && \
-    PGPASSWORD="zabbix-server" psql -h localhost -U "zabbix-server" "zabbix-server" < /zabbix/zabbix-$ZBX_PATCH_VERSION/database/postgresql/images.sql && \
-    PGPASSWORD="zabbix-server" psql -h localhost -U "zabbix-server" "zabbix-server" < /zabbix/zabbix-$ZBX_PATCH_VERSION/database/postgresql/data.sql
+    PGPASSWORD="zabbix-server" psql -h localhost -U "zabbix-server" "zabbix-server" < /zabbix-$ZBX_PATCH_VERSION/database/postgresql/schema.sql && \
+    PGPASSWORD="zabbix-server" psql -h localhost -U "zabbix-server" "zabbix-server" < /zabbix-$ZBX_PATCH_VERSION/database/postgresql/images.sql && \
+    PGPASSWORD="zabbix-server" psql -h localhost -U "zabbix-server" "zabbix-server" < /zabbix-$ZBX_PATCH_VERSION/database/postgresql/data.sql
 
 USER root
 
